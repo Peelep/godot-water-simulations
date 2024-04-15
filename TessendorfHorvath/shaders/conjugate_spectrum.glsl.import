@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dvvjyko1oj44w"
+path="res://.godot/imported/conjugate_spectrum.glsl-8537054f503551c3964879f6a0dc9234.res"
+
+[deps]
+
+source_file="res://TessendorfHorvath/shaders/conjugate_spectrum.glsl"
+dest_files=["res://.godot/imported/conjugate_spectrum.glsl-8537054f503551c3964879f6a0dc9234.res"]
+
+[params]
+

@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://ddv6fjya1pxrq"]
+
+[ext_resource type="Script" path="res://TessendorfHorvath/scripts/WaterManager.gd" id="1_2u2jp"]
+[ext_resource type="Script" path="res://TessendorfHorvath/scripts/WaveSettings.gd" id="2_cg37b"]
+[ext_resource type="Script" path="res://TessendorfHorvath/scripts/WaveParameters.gd" id="3_1xmlc"]
+[ext_resource type="Script" path="res://addons/free_look_camera/camera.gd" id="4_2wet6"]
+[ext_resource type="QuadMesh" uid="uid://bqgiss4xys0yl" path="res://TessendorfHorvath/materials/WaterTile.tres" id="5_wwbvk"]
+[ext_resource type="Script" path="res://TessendorfHorvath/scripts/WaterSpectrum.gd" id="6_mynpw"]
+[ext_resource type="Script" path="res://TessendorfHorvath/scripts/FFT.gd" id="7_c3cpv"]
+
+[sub_resource type="Resource" id="Resource_3jcxb"]
+script = ExtResource("2_cg37b")
+scale = 1.0
+wind_speed = 0.5
+wind_direction = 1.0
+fetch = 100000.0
+spread_blend = 1.0
+swell = 0.0
+short_waves_fade = 0.01
+wave_peak_enhancement = 3.3
+
+[sub_resource type="Resource" id="Resource_hvftu"]
+script = ExtResource("2_cg37b")
+scale = 1.0
+wind_speed = 0.5
+wind_direction = 1.0
+fetch = 300000.0
+spread_blend = 1.0
+swell = 1.0
+short_waves_fade = 0.01
+wave_peak_enhancement = 3.3
+
+[sub_resource type="Resource" id="Resource_j2ptj"]
+script = ExtResource("3_1xmlc")
+gravity = 9.81
+depth = 500.0
+lambda = 1.0
+local = SubResource("Resource_3jcxb")
+swell = SubResource("Resource_hvftu")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q287"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_bottom_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_r0i2j"]
+sky_material = SubResource("ProceduralSkyMaterial_7q287")
+
+[sub_resource type="Environment" id="Environment_c3ieu"]
+background_mode = 2
+sky = SubResource("Sky_r0i2j")
+
+[node name="TessendorfHorvath" type="Node3D"]
+script = ExtResource("1_2u2jp")
+cooley_tukey_fft_v = "res://TessendorfHorvath/shaders/ifft_v.glsl"
+cooley_tukey_fft_h = "res://TessendorfHorvath/shaders/ifft_h.glsl"
+cooley_tukey_fft_permute = "res://TessendorfHorvath/shaders/ifft_permute.glsl"
+pre_compute_fft_twiddle = "res://TessendorfHorvath/shaders/fft_twiddle.glsl"
+pre_compute_spectrum = "res://TessendorfHorvath/shaders/initial_spectrum.glsl"
+pre_compute_conjugate_spectrum = "res://TessendorfHorvath/shaders/conjugate_spectrum.glsl"
+realtime_spectrum = "res://TessendorfHorvath/shaders/realtime_spectrum.glsl"
+merge_textures = "res://TessendorfHorvath/shaders/merge_textures.glsl"
+wave_parameters = SubResource("Resource_j2ptj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c3ieu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 2.99003e-08, -8.21505e-08, 0, 0.939692, 0.34202, 8.74228e-08, 0.34202, -0.939692, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.37833, 13.6995)
+script = ExtResource("4_2wet6")
+
+[node name="WaterPlane1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("5_wwbvk")
+metadata/_edit_lock_ = true
+
+[node name="WaterSpectrums" type="Node" parent="."]
+
+[node name="WaterSpectrum1" type="Node" parent="WaterSpectrums"]
+script = ExtResource("6_mynpw")
+
+[node name="WaterSpectrum2" type="Node" parent="WaterSpectrums"]
+script = ExtResource("6_mynpw")
+
+[node name="WaterSpectrum3" type="Node" parent="WaterSpectrums"]
+script = ExtResource("6_mynpw")
+
+[node name="FFT" type="Node" parent="."]
+script = ExtResource("7_c3cpv")

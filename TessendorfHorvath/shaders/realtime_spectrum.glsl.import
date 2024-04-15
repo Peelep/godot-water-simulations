@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dudwu5yu1aj6t"
+path="res://.godot/imported/realtime_spectrum.glsl-ea9bec69a3cb67bc2125f3d8da81d7ae.res"
+
+[deps]
+
+source_file="res://TessendorfHorvath/shaders/realtime_spectrum.glsl"
+dest_files=["res://.godot/imported/realtime_spectrum.glsl-ea9bec69a3cb67bc2125f3d8da81d7ae.res"]
+
+[params]
+

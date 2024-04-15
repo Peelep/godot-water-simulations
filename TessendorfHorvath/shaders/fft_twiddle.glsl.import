@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://lkn322ncsson"
+path="res://.godot/imported/fft_twiddle.glsl-920eb947a913616325c60bf9f7c1160c.res"
+
+[deps]
+
+source_file="res://TessendorfHorvath/shaders/fft_twiddle.glsl"
+dest_files=["res://.godot/imported/fft_twiddle.glsl-920eb947a913616325c60bf9f7c1160c.res"]
+
+[params]
+

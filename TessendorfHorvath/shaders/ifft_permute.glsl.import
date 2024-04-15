@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bq1wq762o1j76"
+path="res://.godot/imported/ifft_permute.glsl-8151f4a4a649c3922a4f3f986f0f4b19.res"
+
+[deps]
+
+source_file="res://TessendorfHorvath/shaders/ifft_permute.glsl"
+dest_files=["res://.godot/imported/ifft_permute.glsl-8151f4a4a649c3922a4f3f986f0f4b19.res"]
+
+[params]
+

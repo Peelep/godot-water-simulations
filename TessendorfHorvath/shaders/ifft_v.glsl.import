@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://doil1qs5ng67b"
+path="res://.godot/imported/ifft_v.glsl-8f40f2205c3fb9df1683b43619b611de.res"
+
+[deps]
+
+source_file="res://TessendorfHorvath/shaders/ifft_v.glsl"
+dest_files=["res://.godot/imported/ifft_v.glsl-8f40f2205c3fb9df1683b43619b611de.res"]
+
+[params]
+

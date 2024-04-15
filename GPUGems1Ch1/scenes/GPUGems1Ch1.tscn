@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1uimrya3y3j2"]
+
+[ext_resource type="Script" path="res://addons/free_look_camera/camera.gd" id="1_dj33u"]
+[ext_resource type="Material" uid="uid://e5fevdt3w0i" path="res://GPUGems1Ch1/materials/SumOfSinesWaterPlane.material" id="2_68i5j"]
+[ext_resource type="Script" path="res://GPUGems1Ch1/scripts/GPUGems1Ch1.gd" id="3_cfq7y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hbhxk"]
+ground_bottom_color = Color(0.1, 0.3, 0.5, 1)
+
+[sub_resource type="Sky" id="Sky_r0i2j"]
+sky_material = SubResource("ProceduralSkyMaterial_hbhxk")
+
+[sub_resource type="Environment" id="Environment_7efpr"]
+background_mode = 2
+sky = SubResource("Sky_r0i2j")
+
+[sub_resource type="QuadMesh" id="QuadMesh_deihg"]
+material = ExtResource("2_68i5j")
+size = Vector2(10, 10)
+subdivide_width = 100
+subdivide_depth = 100
+orientation = 1
+
+[node name="GPUGems1Ch1" type="Node3D"]
+script = ExtResource("3_cfq7y")
+print_generated_params = false
+wavelength_range = 0.3
+speed_range = 0.2
+median_amplitude = 0.1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7efpr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7)
+script = ExtResource("1_dj33u")
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("QuadMesh_deihg")
+metadata/_edit_lock_ = true
