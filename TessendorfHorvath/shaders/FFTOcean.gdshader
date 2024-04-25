@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode world_vertex_coords;
 
 uniform vec3 water_color: source_color;
 
@@ -52,7 +53,7 @@ void fragment() {
 
 	float fresnel = schlick_fresnel(VIEW, NORMAL, 0.02) * 0.1;
 
-	ALBEDO = (fresnel + water_color) * 0.5;
+	ALBEDO = ( water_color) * 0.5;
 	METALLIC = 0.0;
 	ROUGHNESS = 0.01;
 	RIM = 0.2;
