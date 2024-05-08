@@ -15,7 +15,7 @@ wind_speed = 0.5
 wind_direction = 1.0
 fetch = 100000.0
 spread_blend = 1.0
-swell = 0.0
+swell = 0.2
 short_waves_fade = 0.01
 wave_peak_enhancement = 3.3
 
@@ -39,8 +39,9 @@ local = SubResource("Resource_3jcxb")
 swell = SubResource("Resource_hvftu")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q287"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_bottom_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_bottom_color = Color(0.101961, 0.301961, 0.501961, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_r0i2j"]
@@ -70,13 +71,20 @@ transform = Transform3D(-1, 2.99003e-08, -8.21505e-08, 0, 0.939692, 0.34202, 8.7
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.37833, 13.6995)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8846, 4.37833, 13.6995)
 script = ExtResource("4_2wet6")
 
 [node name="WaterPlane1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.531, 1.02476, 0.0148077)
 mesh = ExtResource("5_wwbvk")
-metadata/_edit_lock_ = true
+
+[node name="WaterPlane2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.531, 1.02476, 10.0148)
+mesh = ExtResource("5_wwbvk")
+
+[node name="WaterPlane3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.531, 1.02476, 0.0148077)
+mesh = ExtResource("5_wwbvk")
 
 [node name="WaterSpectrums" type="Node" parent="."]
 

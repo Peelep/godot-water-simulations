@@ -12,6 +12,10 @@ extends Node3D
 
 @export_range(0, 100) var wave_amount: int = 5
 
+@export var water_color: Color = Color.ROYAL_BLUE
+@export var fresnel_color: Color = Color.WHITE
+@export var fresnel_shininess: float = 5.0
+
 @export_group("Wave Generator Parameters")
 ## degrees
 @export_range(0.0, 360.0) var median_direction:  float = 0.0
@@ -30,14 +34,7 @@ extends Node3D
 ## exponential mystery unit
 @export var steepness:         float = 2.5
 
-@export_group("Light Paremeters")
-@export var water_color: Color = Color.ROYAL_BLUE
-@export var specular_color: Color = Color.WHITE
-@export var specular_shininess: float = 6.0
-@export var fresnel_color: Color = Color.WHITE
-@export var fresnel_shininess: float = 5.0
-@export var tip_color: Color = Color.WHITE
-@export var tip_attenuation: float = 1.0
+
 
 
 var shader_material: ShaderMaterial = preload("res://GPUGems1Ch1/materials/SumOfSinesWaterPlane.material")
@@ -89,14 +86,8 @@ func make_waves_and_update_shader() -> void:
 
 	# Set the lighting uniforms.
 	shader_material.set_shader_parameter("water_color", color_to_vec3(water_color))
-	shader_material.set_shader_parameter("specular_color", color_to_vec3(specular_color))
-	shader_material.set_shader_parameter("specular_shininess", specular_shininess)
 	shader_material.set_shader_parameter("fresnel_color", color_to_vec3(fresnel_color))
 	shader_material.set_shader_parameter("fresnel_shininess", fresnel_shininess)
-	shader_material.set_shader_parameter("tip_color", color_to_vec3(tip_color))
-	shader_material.set_shader_parameter("tip_attenuation", tip_attenuation)
-
-	shader_material.set_shader_parameter("sun_dir", $"DirectionalLight3D".global_transform.basis.z)
 
 	if wave_type == "Gerstner":
 		shader_material.set_shader_parameter("use_gerstner", true)

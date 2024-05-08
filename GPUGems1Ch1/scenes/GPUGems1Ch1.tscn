@@ -5,7 +5,8 @@
 [ext_resource type="Script" path="res://GPUGems1Ch1/scripts/GPUGems1Ch1.gd" id="3_cfq7y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hbhxk"]
-ground_bottom_color = Color(0.1, 0.3, 0.5, 1)
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+ground_bottom_color = Color(0.101961, 0.301961, 0.501961, 1)
 
 [sub_resource type="Sky" id="Sky_r0i2j"]
 sky_material = SubResource("ProceduralSkyMaterial_hbhxk")

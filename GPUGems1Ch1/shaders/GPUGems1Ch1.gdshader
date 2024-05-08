@@ -149,9 +149,6 @@ vec3 calculate_gerstner_normal(int wave_index, vec3 world_pos) {
 }
 
 
-// Fragment shader uses this to color the wave tips.
-varying float vertex_height;
-
 void vertex() {
 	vec3 pos = VERTEX.xyz;
 
@@ -182,18 +179,13 @@ void vertex() {
 		VERTEX.y = vertex.y;
 		NORMAL = normalize(vec3(-normal.x, 1.0, -normal.y));
 	}
-	vertex_height = vertex.y;
 }
 
 // Uniforms for fragment and light shaders.
-uniform vec3 sun_dir = vec3(0.0);
 uniform vec3 water_color : source_color = vec3(0.1, 0.3, 0.5);
 uniform vec3 fresnel_color : source_color = vec3(1.0);
 uniform float fresnel_shininess = 5.0;
-uniform vec3 specular_color : source_color = vec3(1.0);
-uniform float specular_shininess = 1.0;
 
-varying vec3 spec_fresnel_dir;
 
 float schlick_fresnel(vec3 view_dir, vec3 normal, float R0) {
 	// R0 is the reflection coefficient at normal incidence.
